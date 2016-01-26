@@ -20,10 +20,12 @@ var GistAddForm = React.createClass({
       return (
         <div>
           <form onSubmit={ this.addGist }>
-            <input placeholder="Type a Github usename..." onChange={ this.onChange } />
+            <input value={ this.state.username } placeholder="Type a Github usename..." onChange={ this.onChange } />
             <button>Fetch Latest Gist</button>
           </form>
         </div>
       );
     }
 });
+
+export default GistAddForm;

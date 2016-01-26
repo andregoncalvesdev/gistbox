@@ -1,3 +1,6 @@
+import Gist from './Gist';
+import GistAddForm from './GistAddForm';
+
 var GistBox = React.createClass({
   getInitialState: function() {
     return {
@@ -6,15 +9,21 @@ var GistBox = React.createClass({
   },
 
   addGist: function(username) {
-    var self = this
     var url = `https://api.github.com/users/${username}/gists`;
 
-    $.get(url, function(result){
+    $.get(url, (result) => {
+      if(result.length == 0) {
+        alert('This username not exists. Please, enter a valid one.');
+        return
+      }
+
       var username = result[0].owner.login;
       var url = result[0].html_url;
-      var gists = self.state.gists.concat({username, url});
+      var gists = this.state.gists.concat({username, url});
 
-      self.setState({ gists });
+      this.setState({ gists });
+    }).fail(() => {
+      alert('Please, enter a valid username.');
     });
   },
 
@@ -35,4 +44,4 @@ var GistBox = React.createClass({
   }
 });
 
-React.render(<GistBox />, document.querySelector('#app'));
+export default GistBox;

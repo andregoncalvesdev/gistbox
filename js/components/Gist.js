@@ -3,8 +3,10 @@ var Gist = React.createClass({
     return (
       <div>
        { this.props.username }'s' last Gist is
-       <a href={ this.props.url } target="_blank">here</a>
+       <a href={ this.props.url } target="_blank"> here</a>
       </div>
     );
   }
 });
+
+export default Gist;
